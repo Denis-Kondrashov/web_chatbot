@@ -3,3 +3,4 @@ pep8
 python-dotenv
 pillow
 django-debug-toolbar
+openai
