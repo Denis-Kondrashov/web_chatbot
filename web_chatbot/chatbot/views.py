@@ -1,9 +1,10 @@
 import os
 from dotenv import load_dotenv
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
 import openai
+import json
+
+from django.shortcuts import render
+from django.http.response import StreamingHttpResponse
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -15,30 +16,24 @@ client = openai.OpenAI(
 
 
 def home(request):
-    """
-    Представление для отображения главной страницы.
-    """
     return render(request, 'index.html')
 
 
-@require_POST
-def ask_question(request):
-    question = request.POST.get('question', '')
+def generate_response(question):
+    stream = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": question}],
+        stream=True
+    )
 
-    if not question:
-        return JsonResponse({'error': 'Вопрос не может быть пустым.'}, status=400)
+    for chunk in stream:
+        if chunk.choices[0].delta.content is not None:
+            yield (chunk.choices[0].delta.content)
 
-    try:
-        # Отправляем запрос в OpenAI через объект client
-        completion = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": question}],
-            temperature=0.7,
-            max_tokens=256,
-        )
 
-        response = completion.choices[0].message.content
-        return JsonResponse({'response': response}, status=200)
-
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+def answer(request):
+    data = json.loads(request.body)
+    message = data["message"]
+    response = StreamingHttpResponse(generate_response(message), status=200,
+                                     content_type="text/plain")
+    return response
