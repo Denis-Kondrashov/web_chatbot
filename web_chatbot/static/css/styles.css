@@ -1,0 +1,66 @@
+/* Сбрасываем отступы у body и делаем фон */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('../images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+/* Обёртка для всей страницы */
+.wrapper {
+  width: 100%;
+  max-width: 600px;       /* Максимальная ширина, чтобы всё выглядело аккуратно */
+  margin: 40px auto;      /* Центрируем блок по горизонтали */
+  padding: 20px;          /* Внутренние отступы */
+}
+
+/* Стили формы */
+form#chat-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Поле ввода */
+textarea#input {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+/* Кнопка отправки */
+button {
+  align-self: flex-end;   /* Прижимаем кнопку к правому краю формы (по желанию) */
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ddd;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
+/* Область вывода ответа */
+pre#body {
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: auto;
+}
