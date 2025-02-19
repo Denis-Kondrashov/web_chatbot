@@ -27,7 +27,6 @@ staticfiles/
 !*/migrations/__init__.py
 
 # Static files and cache
-static/
 *.css.map
 *.js.map
 *.sass-cache/
