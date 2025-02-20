@@ -1,0 +1,17 @@
+[
+    {"model": "chatbot.cat", "pk": 1, "fields": {"name": "Барсик", "age": 3, "color": "Серый"}},
+    {"model": "chatbot.cat", "pk": 2, "fields": {"name": "Мурзик", "age": 2, "color": "Рыжий"}},
+    {"model": "chatbot.cat", "pk": 3, "fields": {"name": "Василиса", "age": 4, "color": "Белый"}},
+    {"model": "chatbot.cat", "pk": 4, "fields": {"name": "Том", "age": 5, "color": "Черный"}},
+    {"model": "chatbot.cat", "pk": 5, "fields": {"name": "Снежок", "age": 1, "color": "Белый"}},
+    {"model": "chatbot.cat", "pk": 6, "fields": {"name": "Рыжик", "age": 2, "color": "Рыжий"}},
+    {"model": "chatbot.cat", "pk": 7, "fields": {"name": "Персик", "age": 3, "color": "Персиковый"}},
+    {"model": "chatbot.cat", "pk": 8, "fields": {"name": "Леопольд", "age": 6, "color": "Желтый"}},
+    {"model": "chatbot.cat", "pk": 9, "fields": {"name": "Пушок", "age": 4, "color": "Серый"}},
+    {"model": "chatbot.cat", "pk": 10, "fields": {"name": "Мурка", "age": 5, "color": "Черный"}},
+    {"model": "chatbot.cat", "pk": 11, "fields": {"name": "Феликс", "age": 7, "color": "Коричневый"}},
+    {"model": "chatbot.cat", "pk": 12, "fields": {"name": "Багира", "age": 3, "color": "Черный"}},
+    {"model": "chatbot.cat", "pk": 13, "fields": {"name": "Симба", "age": 4, "color": "Рыжий"}},
+    {"model": "chatbot.cat", "pk": 14, "fields": {"name": "Гарфилд", "age": 5, "color": "Оранжевый"}},
+    {"model": "chatbot.cat", "pk": 15, "fields": {"name": "Тишка", "age": 2, "color": "Серый"}}
+]
