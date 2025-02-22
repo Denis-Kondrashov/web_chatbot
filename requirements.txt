@@ -4,6 +4,7 @@ python-dotenv
 pillow
 django-debug-toolbar
 openai
+psycopg2-binary
 markdown
 annotated-types
 anyio
