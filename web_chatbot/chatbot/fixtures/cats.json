@@ -1,0 +1,170 @@
+[
+    {
+        "model": "chatbot.owner",
+        "pk": 1,
+        "fields": {
+            "first_name": "Денис",
+            "last_name": "Кондрашов",
+            "phone_number": "+79123456789"
+        }
+    },
+    {
+        "model": "chatbot.owner",
+        "pk": 2,
+        "fields": {
+            "first_name": "Екатерина",
+            "last_name": "Печкина",
+            "phone_number": "+79098765432"
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 1,
+        "fields": {
+            "name": "Барсик",
+            "age": 3,
+            "color": "Серый",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 2,
+        "fields": {
+            "name": "Мурзик",
+            "age": 2,
+            "color": "Рыжий",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 3,
+        "fields": {
+            "name": "Василиса",
+            "age": 4,
+            "color": "Белый",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 4,
+        "fields": {
+            "name": "Том",
+            "age": 5,
+            "color": "Черный",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 5,
+        "fields": {
+            "name": "Снежок",
+            "age": 1,
+            "color": "Белый",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 6,
+        "fields": {
+            "name": "Рыжик",
+            "age": 2,
+            "color": "Рыжий",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 7,
+        "fields": {
+            "name": "Персик",
+            "age": 3,
+            "color": "Персиковый",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 8,
+        "fields": {
+            "name": "Леопольд",
+            "age": 6,
+            "color": "Желтый",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 9,
+        "fields": {
+            "name": "Пушок",
+            "age": 4,
+            "color": "Серый",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 10,
+        "fields": {
+            "name": "Мурка",
+            "age": 5,
+            "color": "Черный",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 11,
+        "fields": {
+            "name": "Феликс",
+            "age": 7,
+            "color": "Коричневый",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 12,
+        "fields": {
+            "name": "Багира",
+            "age": 3,
+            "color": "Черный",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 13,
+        "fields": {
+            "name": "Симба",
+            "age": 4,
+            "color": "Рыжий",
+            "owner": 1
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 14,
+        "fields": {
+            "name": "Гарфилд",
+            "age": 5,
+            "color": "Оранжевый",
+            "owner": 2
+        }
+    },
+    {
+        "model": "chatbot.cat",
+        "pk": 15,
+        "fields": {
+            "name": "Тишка",
+            "age": 2,
+            "color": "Серый",
+            "owner": 1
+        }
+    }
+]
