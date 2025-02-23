@@ -13,20 +13,19 @@ from .models import Cat, Owner
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 
-# Важно: Указываем базовый URL для всех компонентов OpenAI
+# Указываем базовый URL для всех компонентов OpenAI
 openai_base_url = "https://api.proxyapi.ru/openai/v1"
 
-# Инициализация эмбеддингов с прокси
+# Инициализация эмбеддингов с использованием прокси
 embeddings = OpenAIEmbeddings(
     openai_api_key=api_key,
-    openai_api_base=openai_base_url  # Добавляем кастомный URL
+    openai_api_base=openai_base_url  # Кастомный URL
 )
 
 def get_documents_from_db():
-    """Получаем данные из SQLite"""
+    """Получаем данные из базы данных"""
     documents = []
     cats = Cat.objects.select_related('owner').all()
-    
     for cat in cats:
         doc = (
             f"Кличка: {cat.name}\n"
@@ -38,36 +37,43 @@ def get_documents_from_db():
         documents.append(doc)
     return documents
 
-# Создаем векторное хранилище (перенесем инициализацию внутрь функции)
 def initialize_vector_store():
+    """Инициализация векторного хранилища"""
     documents = get_documents_from_db()
     return FAISS.from_texts(documents, embeddings)
 
-vector_store = initialize_vector_store()
-retriever = vector_store.as_retriever(search_kwargs={"k": 20})
+# Ленивая инициализация векторного хранилища
+vector_store = None
+def get_vector_store():
+    global vector_store
+    if vector_store is None:
+        vector_store = initialize_vector_store()
+    return vector_store
 
 # Инициализация модели с прокси
 llm = ChatOpenAI(
     openai_api_key=api_key,
-    base_url=openai_base_url,  # Используем ваш прокси
+    base_url=openai_base_url,  # Используем прокси
     model="gpt-4o-mini"
 )
 
 prompt = ChatPromptTemplate.from_template(
     """Ты аналитик базы данных кошек. Отвечай ТОЛЬКО на основе контекста. 
-    Если нужно посчитать количество, проведи полный анализ всех данных в контексте.
+Если нужно посчитать количество, проведи полный анализ всех данных в контексте.
 
-    Контекст:
-    {context}
+Контекст:
+{context}
 
-    Вопрос: {input}"""
+Вопрос: {input}"""
 )
 
 document_chain = create_stuff_documents_chain(llm, prompt)
-retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
-def generate_response(question):
-    """Генерация ответа через LangChain"""
+def generate_response_local(question):
+    """Генерация ответа через LangChain с ленивой инициализацией векторного хранилища"""
+    vs = get_vector_store()
+    retriever = vs.as_retriever(search_kwargs={"k": 20})
+    retrieval_chain = create_retrieval_chain(retriever, document_chain)
     try:
         response = retrieval_chain.invoke({"input": question})
         yield response["answer"]
@@ -81,6 +87,6 @@ def answer(request):
     data = json.loads(request.body)
     message = data["message"]
     return StreamingHttpResponse(
-        generate_response(message), 
+        generate_response_local(message),
         content_type="text/plain"
     )
