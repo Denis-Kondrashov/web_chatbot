@@ -23,6 +23,7 @@ sniffio
 sqlparse
 tqdm
 typing_extensions
+whitenoise
 
 langchain
 langchain-openai
